@@ -1,9 +1,9 @@
-package TaskOoP;
+package com.endava.tasks.TaskOoP;
 
 
-import static TaskOoP.DocxMessage.DOCX_MESSAGE;
-import static TaskOoP.JsonMessage.JSON_MESSAGE;
-import static TaskOoP.XmlMessage.XML_MESSAGE;
+import static com.endava.tasks.TaskOoP.DocxMessage.DOCX_MESSAGE;
+import static com.endava.tasks.TaskOoP.JsonMessage.JSON_MESSAGE;
+import static com.endava.tasks.TaskOoP.XmlMessage.XML_MESSAGE;
 
 public class MessageConverter {
 

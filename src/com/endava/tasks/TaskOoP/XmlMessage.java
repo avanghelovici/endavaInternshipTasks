@@ -1,5 +1,4 @@
-package TaskOoP;
-
+package com.endava.tasks.TaskOoP;
 
 public class XmlMessage extends MessageProcessor {
 

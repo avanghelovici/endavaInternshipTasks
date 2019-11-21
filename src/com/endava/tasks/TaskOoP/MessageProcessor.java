@@ -1,4 +1,4 @@
-package TaskOoP;
+package com.endava.tasks.TaskOoP;
 
 public abstract class MessageProcessor implements Message {
 
