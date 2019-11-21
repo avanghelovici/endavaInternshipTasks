@@ -1,4 +1,4 @@
-package TaskOoP;
+package com.endava.tasks.TaskOoP;
 
 public class DocxMessage extends MessageProcessor {
     public static final String DOCX_MESSAGE = "DocxMessage";
