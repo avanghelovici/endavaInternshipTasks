@@ -1,4 +1,4 @@
-package TaskOoP;
+package com.endava.tasks.TaskOoP;
 
 public interface Message {
 
