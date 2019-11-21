@@ -1,6 +1,7 @@
 package src.com.endava.tasks.TaskOoP;
 
 
+
 public class XmlMessage extends MessageProcessor {
 
     protected static final String XML_MESSAGE = "XmlMessage";
