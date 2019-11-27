@@ -1,4 +1,4 @@
-package TaskColLections;
+package com.endava.tasks.TaskColLections;
 
 public class CallCharList {
 
