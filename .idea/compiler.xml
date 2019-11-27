@@ -15,5 +15,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="JunitTask" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
