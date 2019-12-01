@@ -1,4 +1,4 @@
-package test.junit;
+package junit;
 
 class Methods {
 
