@@ -1,15 +1,20 @@
 package Task_Selenium;
 
-import java.util.Random;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import static Task_Selenium.OpenCartExploring.driver;
+
+import java.util.concurrent.TimeUnit;
 
 public class Helper {
 
-    public static final int[] RANDOM_PRODUCTS_ARRAY = new int[]{1, 2, 3, 4};
-    public static final String CREDENTIALS = "artur.test@test.com";
-    public static final String DRIVER_LOCATION = "C:\\Users\\avanghelovici\\IdeaProjects\\tryprog\\NewTest\\src\\main\\resources\\chromedriver.exe";
+    static final String CREDENTIALS = "artur.test@test.com";
+    static final String DRIVER_LOCATION = "C:\\Users\\avanghelovici\\IdeaProjects\\tryprog\\NewTest\\src\\main\\resources\\chromedriver.exe";
 
-    public static int returnsInt(int[] toSort) {
-        int rnd = new Random().nextInt(toSort.length);
-        return toSort[rnd];
-    }
+    static final Wait waiter = new FluentWait<>(driver)
+            .withTimeout(10, TimeUnit.SECONDS)
+            .pollingEvery(2, TimeUnit.SECONDS)
+            .ignoring(NoSuchElementException.class);
 }

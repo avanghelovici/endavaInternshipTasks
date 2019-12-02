@@ -2,21 +2,27 @@ package Task_Selenium;
 
 import org.hamcrest.MatcherAssert;
 import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
+
+
 import static Task_Selenium.Helper.*;
 import static org.hamcrest.CoreMatchers.is;
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class OpenCartExploring {
-    private static WebDriver driver;
-    private static WebDriverWait driverWait;
+    static WebDriver driver;
+    private GeneralPage generalPage = PageFactory.initElements(driver, GeneralPage.class);
+    private LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+    private CartSection cart = PageFactory.initElements(driver, CartSection.class);
+    private Action action = new Action();
+
 
     @BeforeClass
     public static void beforeTestsBegin() {
         System.setProperty("webdriver.chrome.driver", DRIVER_LOCATION);
         driver = Driver.getInstance().getWebDriver();
-        driverWait = new WebDriverWait(driver, 10);
         driver.manage().window().maximize();
         driver.get("https://demo.opencart.com/");
 
@@ -24,21 +30,21 @@ public class OpenCartExploring {
 
     @Before
     public void doBeforeTest() {
-        driverWait.until(ExpectedConditions.visibilityOf(driver.findElement(PageElements.DROP_DOWN_HEADER)));
-        driver.findElement(PageElements.DROP_DOWN_HEADER).click();
-        driver.findElement(PageElements.DROP_DOWN_HEADER_LOGIN).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.LOGIN_BUTTON));
-        driver.findElement(PageElements.EMAIL_ADDRESS).sendKeys(CREDENTIALS);
-        driver.findElement(PageElements.PASSWORD).sendKeys(CREDENTIALS);
-        driver.findElement(PageElements.LOGIN_BUTTON).click();
+        action.waitToBeVisible(generalPage.getHomePage());
+        action.clickOn(generalPage.getHeaderDropDown());
+        action.clickOn(generalPage.getHeaderDropDownLogin());
+        action.waitToBeClickable(loginPage.getLoginButton());
+        action.insertInto(loginPage.getEmail(), CREDENTIALS);
+        action.insertInto(loginPage.getPass(), CREDENTIALS);
+        action.clickOn(loginPage.getLoginButton());
     }
 
     @After
     public void afterTest() {
-        driver.findElement(PageElements.HOME_PAGE).click();
-        driver.findElement(PageElements.DROP_DOWN_HEADER).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.DROP_DOWN_HEADER_LOGOUT));
-        driver.findElement(PageElements.DROP_DOWN_HEADER_LOGOUT).click();
+        action.clickOn(generalPage.getHomePage());
+        action.clickOn(generalPage.getHeaderDropDown());
+        action.waitToBeVisible(generalPage.getHeaderDropDownLogout());
+        action.clickOn(generalPage.getHeaderDropDownLogout());
         driver.manage().deleteAllCookies();
     }
 
@@ -48,53 +54,56 @@ public class OpenCartExploring {
     }
 
     @Test
-    public void loginSearchProductAndAddToCart() throws InterruptedException {
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.SEARCH_FIELD));
-        driver.findElement(PageElements.SEARCH_FIELD).sendKeys("Mac");
-        driver.findElement(PageElements.SEARCH_BUTTON).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.ADD_TO_CART_BUTTON));
-        driver.findElement(PageElements.ADD_TO_CART_BUTTON).click();
-        driverWait.until(ExpectedConditions.visibilityOf(driver.findElement(PageElements.CART_BUTTON)));
-        MatcherAssert.assertThat("Assert that cart has product", PageElements.CART_HAS_PRODUCT, is(PageElements.CART_HAS_PRODUCT));
-        driver.manage().deleteAllCookies();
-        Thread.sleep(3000);
+    public void firstLoginSearchProductAndAddToCart() {
+        action.waitToBeVisible(generalPage.getSearchField());
+        action.insertInto(generalPage.getSearchField(), "Mac");
+        action.clickOn(generalPage.getSearchButton());
+        action.waitToBeClickable(cart.getAddToCart());
+        action.clickOn(cart.getAddToCart());
+        action.waitToBeClickable(cart.getCartButton());
+        action.clickOn(cart.getCartButton());
+        MatcherAssert.assertThat("Assert that cart has product", cart.getHasProduct(), is(cart.getHasProduct()));
+        action.waitToBeClickable(generalPage.getHomePage());
     }
 
 
     @Test
-    public void loginSearchProductAddToCartAndRemove() throws InterruptedException {
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.SEARCH_FIELD));
-        driver.findElement(PageElements.SEARCH_FIELD).sendKeys("Mac");
-        driver.findElement(PageElements.SEARCH_BUTTON).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.ADD_TO_CART_BUTTON));
-        driver.findElement(PageElements.ADD_TO_CART_BUTTON).click();
-        driverWait.until(ExpectedConditions.visibilityOf(driver.findElement(PageElements.CART_BUTTON)));
-        MatcherAssert.assertThat("Assert that cart has product", PageElements.CART_HAS_PRODUCT, is(PageElements.CART_HAS_PRODUCT));
-        driverWait.until(ExpectedConditions.elementToBeClickable(driver.findElement(PageElements.CART_BUTTON)));
-        Thread.sleep(2000);
-        driver.findElement(PageElements.CART_BUTTON).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.REMOVE_BUTTON));
-        driver.findElement(PageElements.REMOVE_BUTTON).click();
-        MatcherAssert.assertThat("Assert that cart is empty", PageElements.CART_IS_EMPTY, is(PageElements.CART_IS_EMPTY));
+    public void secondLoginSearchProductAddToCartAndRemove() {
+        action.waitToBeVisible(generalPage.getSearchField());
+        action.insertInto(generalPage.getSearchField(), "Mac");
+        action.clickOn(generalPage.getSearchButton());
+        action.waitToBeClickable(cart.getAddToCart());
+        action.clickOn(cart.getAddToCart());
+        action.waitToBeClickable(cart.getCartButton());
+        action.clickOn(cart.getCartButton());
+        MatcherAssert.assertThat("Assert that cart has product", cart.getHasProduct(), is(cart.getHasProduct()));
+        action.waitToBeClickable(cart.getCartButton());
+        action.waitToBeClickable(cart.getRemoveButton());
+        action.clickOn(cart.getRemoveButton());
+        action.waitToBeClickable(cart.getCartButton());
+        action.clickOn(cart.getCartButton());
+        action.waitToBeVisible(cart.getIsEmpty());
+        MatcherAssert.assertThat("Assert that cart is empty", cart.getIsEmpty(), is(cart.getIsEmpty()));
     }
 
     @Test
-    public void loginAddMultipleProductsRemoveOne() {
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.SEARCH_FIELD));
-        driver.findElement(PageElements.SEARCH_FIELD).sendKeys("Ipod");
-        driver.findElement(PageElements.SEARCH_BUTTON).click();
-        driverWait.until(ExpectedConditions.elementToBeClickable(PageElements.ADD_TO_CART_BUTTON));
-        driver.findElement(PageElements.ADD_TO_CART_PRODUCT).click();
-        driver.findElement(PageElements.SEARCH_FIELD).clear();
-        driver.findElement(PageElements.SEARCH_FIELD).sendKeys("Mac");
-        driver.findElement(PageElements.SEARCH_BUTTON).click();
-        driver.findElement(PageElements.ADD_TO_CART_PRODUCT).click();
-        driverWait.until(ExpectedConditions.visibilityOf(driver.findElement(PageElements.CART_BUTTON))).click();
-        MatcherAssert.assertThat("Assert that cart has product", PageElements.CART_HAS_PRODUCT, is(PageElements.CART_HAS_PRODUCT));
-        driverWait.until(ExpectedConditions.elementToBeClickable(driver.findElement(PageElements.CART_BUTTON)));
-        driver.findElement(PageElements.CART_BUTTON).click();
-        driver.findElement(PageElements.REMOVE_BUTTON).click();
-        String actualString = driver.findElement(PageElements.CART_ELEMENT).getText();
+    public void thirdLoginAddMultipleProductsRemoveOne() {
+        action.waitToBeVisible(generalPage.getSearchField());
+        action.insertInto(generalPage.getSearchField(), "Ipod");
+        action.clickOn(generalPage.getSearchButton());
+        action.waitToBeClickable(cart.getAddToCart());
+        RandomBy.randomProduct();
+        action.clearOff(generalPage.getSearchField());
+        action.insertInto(generalPage.getSearchField(), "Mac");
+        action.clickOn(generalPage.getSearchButton());
+        RandomBy.randomProduct();
+        action.waitToBeVisible(cart.getCartButton());
+        action.clickOn(cart.getCartButton());
+        MatcherAssert.assertThat("Assert that cart has product", cart.getHasProduct(), is(cart.getHasProduct()));
+        action.waitToBeClickable(cart.getCartButton());
+        action.clickOn(cart.getCartButton());
+        action.clickOn(cart.getRemoveButton());
+        String actualString = action.textFrom(cart.getCartElementForAssert());
         String expectedString = "iPod";
         Assert.assertFalse(actualString.contains(expectedString));
     }
