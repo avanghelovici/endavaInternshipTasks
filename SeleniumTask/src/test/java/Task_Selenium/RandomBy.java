@@ -20,6 +20,6 @@ public class PageElements {
     public static final By HOME_PAGE = By.xpath("/html/body/header/div/div/div[1]/div/h1/a");
     public static final By ADD_TO_CART_PRODUCT = By.xpath(
             String.format("/html/body/div[2]/div/div/div[3]/div[%s]/div/div[2]/div[2]/button[1]",
-                    Helper.returnsInt(Helper.RANDOM_PRODUCTS_ARRAY)));
+                   Action.randomOutOf4()));
 
 }
