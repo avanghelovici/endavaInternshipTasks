@@ -1,8 +1,8 @@
-package TaskStream;
+package com.endava.tasks.TaskStream;
 
 import java.io.*;
 
-import static TaskStream.TestData.*;
+import static com.endava.tasks.TaskStream.TestData.*;
 
 public class Call {
     public static void main(String[] args) throws IOException {
