@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/SeleniumTask/SeleniumTask.iml" filepath="$PROJECT_DIR$/SeleniumTask/SeleniumTask.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/JunitTask/JunitTask.iml" filepath="$PROJECT_DIR$/JunitTask/JunitTask.iml" />
+>>>>>>> 1d83ecb1907bcc0ba4d6b1d4cd82cdf051b12160
       <module fileurl="file://$PROJECT_DIR$/Training for Github.iml" filepath="$PROJECT_DIR$/Training for Github.iml" />
     </modules>
   </component>

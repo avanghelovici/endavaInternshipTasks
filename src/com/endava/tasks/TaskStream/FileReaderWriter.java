@@ -1,4 +1,4 @@
-package TaskStream;
+package com.endava.tasks.TaskStream;
 
 import java.io.*;
 
