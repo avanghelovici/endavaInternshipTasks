@@ -1,8 +1,8 @@
-package com.endava.tasks.TaskOoP;
+package src.com.endava.tasks.TaskOoP;
 
 
-import static com.endava.tasks.TaskOoP.JsonMessage.JSON_MESSAGE;
-import static com.endava.tasks.TaskOoP.XmlMessage.XML_MESSAGE;
+import static src.com.endava.tasks.TaskOoP.JsonMessage.JSON_MESSAGE;
+import static src.com.endava.tasks.TaskOoP.XmlMessage.XML_MESSAGE;
 
 public class Main {
     public static void main(String[] args) {

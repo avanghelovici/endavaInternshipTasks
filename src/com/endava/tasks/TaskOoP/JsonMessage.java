@@ -1,4 +1,4 @@
-package com.endava.tasks.TaskOoP;
+package src.com.endava.tasks.TaskOoP;
 
 public class JsonMessage extends MessageProcessor {
 
