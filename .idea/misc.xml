@@ -3,7 +3,11 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/SeleniumTask/pom.xml" />
+=======
+        <option value="$PROJECT_DIR$/JunitTask/pom.xml" />
+>>>>>>> 1d83ecb1907bcc0ba4d6b1d4cd82cdf051b12160
       </list>
     </option>
   </component>
