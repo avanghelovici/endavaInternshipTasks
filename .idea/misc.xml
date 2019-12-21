@@ -35,6 +35,17 @@
       </list>
     </option>
   </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/SeleniumTask/pom.xml" />
+=======
+        <option value="$PROJECT_DIR$/JunitTask/pom.xml" />
+>>>>>>> 1d83ecb1907bcc0ba4d6b1d4cd82cdf051b12160
+      </list>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

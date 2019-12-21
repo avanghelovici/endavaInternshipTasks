@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="SeleniumTask" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SeleniumTask" target="7" />
         <module name="JunitTask" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="JunitTask" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
