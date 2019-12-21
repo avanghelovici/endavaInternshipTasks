@@ -1,4 +1,4 @@
-package com.endava.tasks.TaskColLections;
+package src.com.endava.tasks.TaskColLections;
 
 import java.util.*;
 
